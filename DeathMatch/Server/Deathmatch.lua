@@ -25,12 +25,16 @@ function DeathMatch:new( dimension )
 end
 
 
-function DeathMatch.DataExtract (data) -- data is the json file to get for example test.json
+-- For load the map
+-- DeathMatch:DataExtract( Package:Require ("./Maps/" .. map_name .. ".lua") )
+
+function DeathMatch:DataExtract (data) -- data is the json file to get for example test.json
 --Get map name, Waitingarea , respawn point, time , weather , ScoreLimit and save all in MapData
+self.MapData = data
 end
 
 
-function DeathMatch.Load ()
+function DeathMatch:Load ()
 
     for k,v in pairs(NanosWorld:GetPlayer()) do
 
@@ -51,12 +55,12 @@ function DeathMatch.Load ()
     end
 end
 
-function DeathMatch.Start ()
+function DeathMatch:Start ()
 -- unfreeze the player
 -- start the countdown for the end of the game (end game by time or if a time arrive at the score limit)
 end
 
-function DeathMatch.End ()
+function DeathMatch:End ()
     --Freeze everyone
     -- Announce the winner team (and the stats of the game)
     -- wait 5-10 sec so everyone can see the score and stats
@@ -68,7 +72,7 @@ function DeathMatch.End ()
     -- Destroy this lobby in the global variable index.lua server
 end
 
-function DeathMatch.UpdateUI ()
+function DeathMatch:UpdateUI ()
     -- loop through every client to update the score and timer
     for k,v in pairs(self.Global) do
         
@@ -77,7 +81,7 @@ function DeathMatch.UpdateUI ()
 
 end
 
-function DeathMatch.CheckVictory ()
+function DeathMatch:CheckVictory ()
     if(self.Score[0] == self.MapData.ScoreLimit or self.Score[1] == self.MapData.ScoreLimit) then
     -- DeathMatch.End()
     end
