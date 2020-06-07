@@ -9,4 +9,4 @@ Package:on("Load", function()
 
 
 
-Deathmatch = {} -- Save all the different Deathmatch Game going 
+DeathmatchGlobal = {} -- Save all the different Deathmatch Game going 

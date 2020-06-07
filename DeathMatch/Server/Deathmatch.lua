@@ -27,7 +27,7 @@ DeathMatch.New = function()
     return dm
 end
 
-function DeathMatch.DataExtract(data) -- data is the json file to get for example test.json
+DeathMatch.DataExtract = function(data) -- data is the json file to get for example test.json
 --Get map name, Waitingarea , respawn point, time , weather , ScoreLimit and save all in MapData
 end
 
@@ -49,6 +49,7 @@ DeathMatch.Load = function()
         -- Spawn weapon to each (will be replace by a shop later)
         -- do the countdown before starting and when it is over launch DeathMatch.Start()
         -- Add this lobby in the global variable index.lua server
+        -- Reset to all player the data value and add the ID of the game
     end
 end
 

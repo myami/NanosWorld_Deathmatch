@@ -3,10 +3,12 @@ RedTeamScore = 0
 Time = 0
 
 
-text = "Blue Team : ".. BlueTeamScore .. " || Red Team : " .. RedTeamScore -- Text to render on the Canvas.
+text = "Blue Team : ".. BlueTeamScore .. " || Red Team : " .. RedTeamScore -- Score on the middle top of the screen
 
 -- if time > 60 show it in min otherwise in sec ??? 
-textTimer = Time .." sec remaining"
+textTimer = Time .." sec remaining" -- Time in the bottom left ? 
+
+-- Need to do a leaderboard with all player name , Kill,Death,KDratio, and ping
 
 
 locationScore = Vector2D(250, 250) -- Screen space position to render the text.

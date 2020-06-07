@@ -13,7 +13,7 @@ Player:on("Spawn", function(new_player)
     data.Kill = 0 --Number of player he kill
     data.Death = 0 -- Number of time he died
     data.KD = Kill/Death
-    
+    data.Shooter = nil 
     new_player:SetValue("Data", Data)
 end)
 
@@ -30,12 +30,43 @@ end)
 Character:on("Death", function(self)
     if (self:GetValue("IsInADeathmatchGame")) then
         --Check you're team and give a point to the other team
+        D = self:GetValue("Data")
+        D.Death =  D.Death + 1
+        self:SetValue("Data", D)
+        if(D.Team == 0) then
+          -- Find the good deathmatch game in DeathmatchGlobal with the ID that is the index of the instance in DeathmatchGlobal
+         Game = DeathmatchGlobal[D.Id] 
+         Game.Score[1] =  Game.Score[1] + 1
+          -- Add 1 point to the red team  
+        end
+        if(D.Team == 1) then
+          -- Find the good deathmatch game in DeathmatchGlobal with the ID that is the index of the instance in DeathmatchGlobal
+          Game = DeathmatchGlobal[D.Id] 
+         Game.Score[0] =  Game.Score[0] + 1
+          -- Add 1 point to the blue team  
+        end
+        -- Take the last guy that shoot on the player and give him the kill
+        Shoot = D.Shooter:GetValue("Data")
+        Shoot.Kill = Shoot.Kill + 1
+        Shooter:SetValue("Data", Shoot)
+        
+        --Send to all the client the new data to update the leaderboard
+        
     end
 end)
 
 Character:on("Respawn", function(self)
     if (self:GetValue("IsInADeathmatchGame")) then
         -- respawn at a random spawn point from is team
+    end
+end)
+
+Character:on("TakeDamage", function(self, damage, type, bone, FromDirection, Instigator)
+    if (self:GetValue("IsInADeathmatchGame")) then
+        -- Save the shooter
+        D = self:GetValue("Data")
+        D.Shooter = Instigator
+        new_player:SetValue("Data", D)
     end
 end)
 
