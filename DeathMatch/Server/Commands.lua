@@ -13,7 +13,7 @@ end
 --]]
 
 function EveryoneJoinDeathmatch()
-    for k,v in pair(NanosWorld:GetPlayer()) do
+    for k,v in pairs(NanosWorld:GetPlayer()) do
         v:SetValue("WaitingDeathmatchGame", true)
       end
 end
