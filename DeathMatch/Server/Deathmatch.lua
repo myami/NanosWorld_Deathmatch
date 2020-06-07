@@ -1,4 +1,6 @@
 -- Deathmatch class
+
+--[[
 DeathMatch = {}
     DeathMatch.Global = {} -- array of all player in the game
     DeathMatch.BlueTeam = {} -- array of the player in BlueTeam
@@ -7,14 +9,30 @@ DeathMatch = {}
     DeathMatch.Spectator = {} -- Array of people that are spectator
     DeathMatch.MapData = {} -- Data of the map like spawn point for each team , map name etc.... (will be extract from JSON file)
 
+--]]
 
+DeathMatch = {
+    Global = {},
+    BlueTeam = {},
+    RedTeam = {},
+    Spectator = {},
+    Score = {},
+    MapData = {}
+}
+DeathMatch.mt = {}
 
-function DeathMatch.DataExtract(data) -- data is the json encode file to get
+DeathMatch.New = function()
+    local dm = {}
+    setmetatable(dm,DeathMatch.mt)
+    return dm
+end
+
+function DeathMatch.DataExtract(data) -- data is the json file to get for example test.json
 --Get map name, Waitingarea , respawn point, time , weather , ScoreLimit and save all in MapData
 end
 
 
-function DeathMatch.Load()
+DeathMatch.Load = function()
 
     for k,v in pair(NanosWorld:GetPlayer()) do
 
@@ -34,14 +52,12 @@ function DeathMatch.Load()
     end
 end
 
-
-function DeathMatch.Start()
+DeathMatch.Start = function()
 -- unfreeze the player
 -- start the countdown for the end of the game (end game by time or if a time arrive at the score limit)
 end
 
-
-function DeathMatch.End()
+DeathMatch.End = function()
     --Freeze everyone
     -- Announce the winner team (and the stats of the game)
     -- wait 5-10 sec so everyone can see the score and stats
@@ -53,8 +69,7 @@ function DeathMatch.End()
     -- Destroy this lobby in the global variable index.lua server
 end
 
-
-function DeathMatch.UpdateUI()
+DeathMatch.UpdateUI = function ()
     -- loop through every client to update the score and timer
     for k,v in pair(DeathMatch.Global) do
         
@@ -63,7 +78,7 @@ function DeathMatch.UpdateUI()
 
 end
 
-function DeathMatch.CheckVictory()
+DeathMatch.CheckVictory = function ()
     if(DeathMatch.Score[0] == DeathMatch.MapData.ScoreLimit or DeathMatch.Score[1] == DeathMatch.MapData.ScoreLimit) then
     -- DeathMatch.End()
     end
