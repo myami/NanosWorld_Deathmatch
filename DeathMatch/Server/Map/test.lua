@@ -1,4 +1,5 @@
-return {
+return 
+{
     Name = "MapTest",
     Time = { hour = 11, minutes = 30 },
     WaitingArea = Vector(500,500,500),

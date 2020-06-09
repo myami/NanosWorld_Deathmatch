@@ -13,7 +13,7 @@ Player:on("Spawn", function(new_player)
     data.Kill = 0 --Number of player he kill
     data.Death = 0 -- Number of time he died
     data.KD = Kill/Death
-    data.Shooter = nil 
+    data.Shooter = new_player 
     new_player:SetValue("Data", Data)
 end)
 

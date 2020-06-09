@@ -11,7 +11,7 @@ DeathMatch = {
 
 
 DeathMatch.__index = DeathMatch 
-function DeathMatch:new( dimension )
+function DeathMatch:New( dimension )
     if DeathMatchGlobal[ dimension ] then return DeathMatchGlobal[ dimension ] end -- if the table exists return it
 
     local new_instance = {

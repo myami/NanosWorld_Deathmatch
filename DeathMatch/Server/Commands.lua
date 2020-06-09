@@ -19,3 +19,10 @@ function EveryoneJoinDeathmatch()
 end
 
 
+function CreateDeathmatch(map_name)
+    DM = DeathMatch:New(table.getn(DeathmatchGlobal))
+    DM:DataExtract(Package:Require ("./Maps/" .. map_name .. ".lua"))
+    DM:Load()
+end
+
+
