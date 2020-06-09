@@ -71,3 +71,8 @@ Character:on("TakeDamage", function(self, damage, type, bone, FromDirection, Ins
     end
 end)
 
+Events:on("ClientCommand", function(Player, Text)
+    if (Text == "JoinDeathmatch" or Text == "JD") then
+        JoinDeathmatch(Player)
+    end
+end)

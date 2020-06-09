@@ -39,6 +39,7 @@ function DeathMatch:Load ()
     for k,v in pairs(NanosWorld:GetPlayer()) do
 
         if(v:GetValue("WaitingDeathmatchGame")) then
+            table.getn(self.Global)
         --Putting them in the Global array
         v:SetValue("IsInADeathmatchGame", true)
         end
