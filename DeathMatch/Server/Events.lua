@@ -33,23 +33,23 @@ Character:on("Death", function(self)
       local  D = self:GetValue("Data")
         D.Death =  D.Death + 1
                   -- Find the good deathmatch game in DeathmatchGlobal with the ID that is the index of the instance in DeathmatchGlobal
-
         local Game = DeathmatchGlobal[D.Id] 
+        
         self:SetValue("Data", D)
         if(D.Team == 0) then
-        
          Game.Score[1] =  Game.Score[1] + 1
           -- Add 1 point to the red team  
         end
         if(D.Team == 1) then
-          -- Find the good deathmatch game in DeathmatchGlobal with the ID that is the index of the instance in DeathmatchGlobal
          Game.Score[0] =  Game.Score[0] + 1
           -- Add 1 point to the blue team  
+          Game:UpdateUI() -- update the score UI 
         end
         -- Take the last guy that shoot on the player and give him the kill
         local Shoot = D.Shooter:GetValue("Data")
         Shoot.Kill = Shoot.Kill + 1
         D.Shooter:SetValue("Data", Shoot)
+        Game:UpdateLeaderboard()
 
         --Send to all the client the new data to update the leaderboard
         
